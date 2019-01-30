@@ -1,13 +1,11 @@
-const express = require("express")
-const BodyParser = require("body-parser")
-const mongoose = require ("mongoose")
-const Movie = require("./models/Movie")
+const express = require("express");
+const hbs = require("hbs");
+const app = express();
 
+app.set("view engine", "hbs");
+ 
 
-const app = express()
-
-
-
+app.use(require("./routes/index.js"));
 
 app.listen(4000, () =>{
     console.log("I am listening in 4000 ...")

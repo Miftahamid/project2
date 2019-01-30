@@ -1,5 +1,5 @@
 {
-  "name": "Movies",
+  "name": "movies",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Miftahamid/project2#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "hbs": "^4.0.1",
     "mongo": "^0.1.0",
     "mongoose": "^5.4.8"
   }
