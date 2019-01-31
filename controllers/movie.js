@@ -1,33 +1,57 @@
-const mongoose = require('./../models/Movie')
- 
-  
+const Movie = require("../models/Movie");
+
 module.exports = {
-    index: (req, res) => {
-        res.render(console.log("The index is rendering"))
+  index: (req, res) => {   
+    Movie.find({})
+    .sort({ createdAt: -1 })
+    .then( movies => {
+        res.render("movie/index", { movies })
+    })
+ 
+   },
+  show: (req, res) => {
+     Movie.findOne({_id: req.params.id})
+      .populate("author comments.author")
+      .exec(function(err, movie) {
+       res.render("movie/show", movie);
+     })
+  },
+  addMovie: (req, res) => {
+    res.render("movie/newMovieForm")
+  },
+  create: (req, res) => {
+    Movie.create({
+      movie: req.body.movie.content,
+      content: req.user._id
+    }).then(movie => {
+        res.redirect("/movie/index")
+      });
     },
-    new: (req, res) => {
-        res.render("movie/new")
-    },
-    create: (req, res) => {
-        User.create({
-            name: req.body.name,
-            length: req.body.length
-        }).then(newMovie => {
-            console.log(newMovie)
-            res.send(console.log(newMovie))
-        })
-    },
-    // show: function (req, res) {
-	// 	// displaying the data for a single to do
-	// },
-	// edit: function (req, res) {
-	// 	// rendering the form to update an existing to do
-	// },
-	// update: function (req, res) {
-	// 	// updating a to do in the database
-	// },
-	// destroy: function (req, res) {
-	// 	// deleting a to do
-	// }
-    
-}
+  
+  update: (req, res) => {
+    let { content } = req.body;
+    Movie.findOneAndUpdate({ _id: req.params.id }).then(movie => {
+      movie.comments.push({
+        content,
+        author: req.user._id
+      });
+      movie.save(err => {
+        res.redirect(`/movie/${movie._id}`);
+      });
+    });
+  },
+  delete: (req, res) =>
+    Movie.findOneAndDelete({_id: req.params.id})
+    .then( then => {
+        console.log('Deletion successful');
+        res.redirect("/")
+    }),
+
+  requireAuth: function(req, res, next) {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.redirect("/");
+    }
+  }
+};

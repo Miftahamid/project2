@@ -1,36 +1,44 @@
-const mongoose = require('./../models/User')
+const User = require("../models/User");
+const { Movie } = require("../models/Movie");
+const passport = require("passport");
 
-// const bookmark = mongoose.model('')
- 
-  
 module.exports = {
-    index: (req, res) => {
-        res.render(console.log("The index is rendering"))
-    },
-    new: (req, res) => {
-        res.render(console.log("the new is render"))
-    },
-    create: (req, res) => {
-        User.create({
-            name: req.body.name,
-            eamil: req.body.eamil,
-            password: req.body.password
-        }).then(newUser => {
-            console.log(newUser)
-            res.send(console.log(newUser))
-        })
-    },
-    // show: function (req, res) {
-	// 	// displaying the data for a single to do
-	// },
-	// edit: function (req, res) {
-	// 	// rendering the form to update an existing to do
-	// },
-	// update: function (req, res) {
-	// 	// updating a to do in the database
-	// },
-	// destroy: function (req, res) {
-	// 	// deleting a to do
-	// }
-    
-}
+  show: (req, res) => {
+    User.findOne({ _id: req.params.id })
+      .populate({
+        path: "movies",
+        options: { limit: 5, sort: { createdAt: -1 } }
+      })
+      .then(user => {
+        res.render("user/show", { user });
+      });
+  },
+  login: (req, res) => {
+    res.render("user/login", { message: req.flash("loginMessage") });
+  },
+  createLogin: (req, res) => {
+    const login = passport.authenticate("local-login", {
+      successRedirect: "/",
+      failureRedirect: "/user/login",
+      failureFlash: true
+    });
+
+    return login(req, res);
+  },
+  signUp: (req, res) => {
+    res.render("user/signup", { message: req.flash("signupMessage") });
+  },
+  createSignUp: (req, res) => {
+    const signup = passport.authenticate("local-signup", {
+      successRedirect: "/",
+      failureRedirect: "/signup",
+      failureFlash: true
+    });
+
+    return signup(req, res);
+  },
+  logout: (req, res) => {
+    req.logout();
+    res.redirect("/");
+  }
+};

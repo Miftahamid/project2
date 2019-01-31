@@ -1,5 +1,5 @@
 <p class="card">
-  {{'movie'}}
+  {{> 'movie'}}
 </p>
 
 {{#if comments.length}}
@@ -13,12 +13,12 @@
       <div class="card-action">
         <a href="/user/{{ author.id }}" class="">{{ author.local.email }}</a>
         <span class="movie__date">{{ createdAt }}</span>
-        <span class="movie_comments">{{ comments.length }} Comments</span>
       </div>
     </div>
   {{/each}}
 {{/if}}
 
+{{#if currentUser}}
 <div class="card">
   <div class="card-content">
     <h4 class="card-title">Add a comment:</h6>
@@ -33,3 +33,4 @@
     </form>
   </div>
 </div>
+{{/if }}

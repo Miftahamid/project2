@@ -1,1 +1,9 @@
- 
+
+
+{{#if movies}}
+  <ul class="movies">
+    {{#each movies}}
+       {{> 'movie'}}
+    {{/each}}
+  </ul>
+{{/if}}
