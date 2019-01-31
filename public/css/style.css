@@ -1,9 +1,12 @@
+body{
+  background-color: blue;
+}
 .nav-wrapper {
-    width: 20%;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  select {
-    display: block;
-  }
+  width: 95%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+select {
+  display: block;
+}
