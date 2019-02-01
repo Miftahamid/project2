@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const Movie = new Schema({
   movie: String,
   content: String,
+  length: Number,
   createdAt: {
     type: Date,
     default: Date.now()

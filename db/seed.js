@@ -91,11 +91,23 @@ const seeds = require('./seed.json')
 const Movie = require("../models/Movie")
 mongoose.Promise = Promise
 
-Movie.remove({}).then(() => {
-//   console.log('Dropped the DB')
-  Movie.collection.insert(seeds).then(seededEntries => {
-    // console.log(seededEntries)
-    mongoose.connection.close()
-    // process.exit()
-  })
-})
+Movie.remove({})
+ .then(_ => {
+   Movie.collection.insert(seeds)
+     .then(movies => {
+       console.log(seeds)
+       process.exit()
+     })
+     .catch(err => {
+       console.log(err)
+     })
+ })
+
+// Movie.remove({}).then(() => {
+// //   console.log('Dropped the DB')
+//   Movie.collection.insert(seeds).then(seededEntries => {
+//     // console.log(seededEntries)
+//     mongoose.connection.close()
+//     // process.exit()
+//   })
+// })

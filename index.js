@@ -35,4 +35,4 @@ app.use(methodOverride("_method"));
 
 app.use(require("./routes/index.js"));
 
-app.listen(4000, () => console.log(" I am running on 4000 hey yall"));
+app.listen(3000, () => console.log(" I am running on 4000 hey yall"));

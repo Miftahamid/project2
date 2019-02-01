@@ -1,9 +1,51 @@
 
 
-{{#if movies}}
-  <ul class="movies">
-    {{#each movies}}
-       {{> 'movie'}}
-    {{/each}}
-  </ul>
-{{/if}}
+{{!-- <h1>Are you showing</h1>
+
+
+
+{{#each movies}} 
+<div>
+    <h1>{{ movie }}</h1>
+</div>
+<div>
+    <h2> {{ content }} </h2>
+</div>
+<div>
+    <p cla> {{ length }} </p>
+</div>
+
+{{/each}} --}}
+
+
+
+{{!-- <section class="form-container">
+  <h4>New Movie</h4>
+  <form action="/movie" method="post" class="movie-form">
+    <p class="input-field">
+      <textarea name="movie[content]" cols="30" rows="10" placeholder="Message"></textarea>
+    </p>
+    <p class="input-field">
+      <input type="submit" value="Movie" class="btn waves-effect waves-light">
+    </p>
+  </form>
+</section> --}}
+
+<form action="/movie" method="POST">
+    <label for="name">Movie Name</label>
+    <input type="text" name="name" placeholder="Movie Name">
+    <br>
+    <label for="comment">Rating Number</label>
+    <input type="text" name="comment" placeholder="Rate from 1-5">
+    <br>
+    <input type="submit" value="submit">
+</form>
+    <button action="/movie/{{id}}?_method=Delete" method = "POST">Delete</button>
+
+
+    {{!-- delete: (req, res) =>
+    Employer.findOneAndDelete({_id: req.params.id})
+    .then( then => {
+        console.log('Deletion successful');
+        res.redirect("/employer")
+    }) --}}

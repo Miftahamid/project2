@@ -21,8 +21,8 @@ module.exports = {
   },
   create: (req, res) => {
     Movie.create({
-      movie: req.body.movie.content,
-      content: req.user._id
+      movie: req.body.movie,
+      content: req.body.content
     }).then(movie => {
         res.redirect("/movie/index")
       });
@@ -33,7 +33,7 @@ module.exports = {
     Movie.findOneAndUpdate({ _id: req.params.id }).then(movie => {
       movie.comments.push({
         content,
-        author: req.user._id
+        author: req.body._id
       });
       movie.save(err => {
         res.redirect(`/movie/${movie._id}`);
@@ -41,7 +41,7 @@ module.exports = {
     });
   },
   delete: (req, res) =>
-    Movie.findOneAndDelete({_id: req.params.id})
+    Movie.findByIdAndDelete({_id: req.params.id})
     .then( then => {
         console.log('Deletion successful');
         res.redirect("/")
