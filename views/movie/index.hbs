@@ -1,17 +1,22 @@
-            {{!-- <h1>Are you showing</h1> --}}
- 
- 
-        <div>
-            <h1>{{ name }}</h1>
-        </div>
-        <div>
-            <h2> {{ createdAt }} </h2>
-        </div>
-        <div>
-            <p cla> {{ length }} </p>
-        </div>
-        
-        <form class= "" action = "/movie/{{id}}?_method=DELETE" method="POST">
-        <input type="submit" value="Delete">
-        </form>
- 
+ <section class="test-center">
+  <div class="text-center">
+    <h1 class="text-center">Create Album</h1>
+    {{#each userId}}
+    <span class="text-center" style="display:block">
+      {{local.email}}
+    </span>
+  </div>
+  {{/each}}
+  <h2 class="text-center">load image</h2>
+  <div class="text-center">
+    <form action="/upload" enctype="multipart/form-data" method="POST">
+      <input type="file" name="photo" />
+      <input type="submit" class="btn btn-primary" value="Upload Photo" />
+    </form>
+  </div>
+  {{#if photo}}
+  <div class="text-center">
+    <img class="text-center" src="{{this}}" class="img-fluid" alt="Responsive image">
+  </div>
+  {{/if}}
+</section>

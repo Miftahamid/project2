@@ -4,6 +4,8 @@ const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const multer = require('multer');
+const fs = require('fs');
 const passport = require("passport");
 const methodOverride = require("method-override");
 
@@ -27,6 +29,7 @@ app.use(passport.session());
 
 
 hbs.registerPartials(__dirname + "/views/partials");
+app.use(express.static(__dirname + '/public/img'));
 app.use(express.static("public"));
 app.set("view engine", "hbs");
 app.use(methodOverride("_method"));
@@ -35,4 +38,4 @@ app.use(methodOverride("_method"));
 
 app.use(require("./routes/index.js"));
 
-app.listen(3000, () => console.log(" I am running on 4000 hey yall"));
+app.listen(4000, () => console.log(" I am running on 4000 hey yall"));

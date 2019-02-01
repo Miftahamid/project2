@@ -11,4 +11,5 @@ body{
 
 select {
   display: block;
+  background-color: aqua;
 }

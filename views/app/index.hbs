@@ -1,51 +1,49 @@
-
-
-{{!-- <h1>Are you showing</h1>
-
-
-
-{{#each movies}} 
-<div>
-    <h1>{{ movie }}</h1>
+ 
+ 
+ {{#unless currentUser}}
+{{!-- <h2 class="text-center">Home</h2> --}}
+<div class="jumbotron">
+    <h1 class="display-4">Movie Rater</h1>
+    <p class="lead"> The best to choose your movies only $999 a month(one month free).We take all kind of payment method if you don't have a ceadit card it is ok just mail us the cash!!! Let's Make Our Movie Experiance better (Movie Rater Batter Together) </p>
+    <hr class="my-4">
+    <p>Made by Mifta AKA THE CODING BEAST</p>
+    <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+    <a class="btn btn-primary btn-lg" href="/signup" role="button">New User</a>
 </div>
-<div>
-    <h2> {{ content }} </h2>
+{{/unless}}
+{{#each photo}}
+ 
+<section style="max-width: 500px; margin: 0 auto 15px">
+    <div>
+        <div class="card">
+            <img class="card-img-top" src="{{path}}" alt="Card image cap">
+            <div>
+                {{#if author}}
+                <form action="/index/{{id}}?_method=DELETE" method="POST" accept-charset="utf-8">
+                    <button style="margin-top: 5px" type="submit" value="Delete" class="btn btn-danger">Delete Photo</button>
+                </form>
+                {{/if}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Comments: {{comments.length}}</h5>
+                {{#if comments}}
+                {{#each comments}}
+                <p class="card-text">{{content}}</p>
+                {{/each}}
+                {{/if}}
+
+
+                <form action="/{{id}}?_method=PUT" method="POST" class="row">
+                    <label for="exampleFormControlTextarea1"></label>
+                    <textarea type="text" name="content" class="form-control" id="" rows="3"></textarea>
+                    <button style="margin-top: 5px" class="btn btn-primary" id="photobutton" type="submit">Enter
+                        Comment</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
 </div>
-<div>
-    <p cla> {{ length }} </p>
-</div>
-
-{{/each}} --}}
-
-
-
-{{!-- <section class="form-container">
-  <h4>New Movie</h4>
-  <form action="/movie" method="post" class="movie-form">
-    <p class="input-field">
-      <textarea name="movie[content]" cols="30" rows="10" placeholder="Message"></textarea>
-    </p>
-    <p class="input-field">
-      <input type="submit" value="Movie" class="btn waves-effect waves-light">
-    </p>
-  </form>
-</section> --}}
-
-<form action="/movie" method="POST">
-    <label for="name">Movie Name</label>
-    <input type="text" name="name" placeholder="Movie Name">
-    <br>
-    <label for="comment">Rating Number</label>
-    <input type="text" name="comment" placeholder="Rate from 1-5">
-    <br>
-    <input type="submit" value="submit">
-</form>
-    <button action="/movie/{{id}}?_method=Delete" method = "POST">Delete</button>
-
-
-    {{!-- delete: (req, res) =>
-    Employer.findOneAndDelete({_id: req.params.id})
-    .then( then => {
-        console.log('Deletion successful');
-        res.redirect("/employer")
-    }) --}}
+{{/each}}

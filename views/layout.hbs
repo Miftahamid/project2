@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>Movie Rater</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    {{!-- <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"> --}}
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+
+   
   </head>
   <body>
     <header class="site-header">
@@ -15,9 +19,12 @@
           <a href="/" class="brand-logo left">Movie Rater</a>
           <ul class="right">
           {{#if currentUser}}
-            <li><a href="/movie/new">Movie Rater</a></li>
+            <li><a href="/">Movie Rater</a></li>
             <li><a href="/user/{{currentUser.id}}">Profile</a></li>
             <li><a href="/user/logout">Log Out</a></li>
+            <li class="nav-item">
+            <a class="nav-link" href="/user/{{currentUser.id}}">Add Image</a>
+          </li>
           {{else}}
             <li><a href="/user/login">Log In</a></li>
             <li><a href="/user/sign-up">Sign Up</a></li>
@@ -27,6 +34,12 @@
       </nav>
     </header>
     <main class="container">
+
+       {{#if currentUser}}
+  <h1 class="text-center"></h1>
+  {{else}}
+  <h1 class="text-center"> Welcome </h1>
+  {{/if}}
       {{{ body }}}
     </main>
   </body>
