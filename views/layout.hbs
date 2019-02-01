@@ -19,7 +19,7 @@
           <a href="/" class="brand-logo left">Movie Rater</a>
           <ul class="right">
           {{#if currentUser}}
-            <li><a href="/">Movie Rater</a></li>
+            <li><a href="/movie/new">Movie Rater</a></li>
             <li><a href="/user/{{currentUser.id}}">Profile</a></li>
             <li><a href="/user/logout">Log Out</a></li>
             <li class="nav-item">
@@ -34,12 +34,6 @@
       </nav>
     </header>
     <main class="container">
-
-       {{#if currentUser}}
-  <h1 class="text-center"></h1>
-  {{else}}
-  <h1 class="text-center"> Welcome </h1>
-  {{/if}}
       {{{ body }}}
     </main>
   </body>

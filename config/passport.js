@@ -1,5 +1,5 @@
 const LocalStrategy = require("passport-local").Strategy;
-const User = require("../models/User");
+const User = require("../models/user");
 
 module.exports = function(passport) {
   passport.serializeUser(function(user, callback) {
@@ -21,26 +21,29 @@ module.exports = function(passport) {
         passReqToCallback: true
       },
       function(req, email, password, callback) {
-        User.findOne({ "local.email": email })
-          .then(user => {
-            if (user) {
-              return callback(
-                null,
-                false,
-                req.flash("signupMessage", "this email is already taken")
-              );
-            } else {
-              let newUser = new User();
-              newUser.local.email = email;
-              newUser.local.password = newUser.encrypt(password);
+        // check to see if this email is taken
+        User.findOne({ "local.email": email }, function(err, user) {
+          if (err) return callback(err);
+          // if the user is already taken, send them a flash message
+          if (user) {
+            return callback(
+              null,
+              false,
+              req.flash("signupMessage", "This email is already taken")
+            );
+          }
+          // if the email is not taken, create a new user
+          else {
+            const newUser = new User();
+            newUser.local.email = email;
+            newUser.local.password = newUser.encrypt(password);
 
-              newUser.save(err => {
-                if (err) throw err;
-                return callback(null, newUser);
-              });
-            }
-          })
-          .catch(err => console.log(err));
+            newUser.save(function(err) {
+              if (err) throw err;
+              return callback(null, newUser);
+            });
+          }
+        });
       }
     )
   );
@@ -54,9 +57,12 @@ module.exports = function(passport) {
         passReqToCallback: true
       },
       function(req, email, password, callback) {
+        // search for a user with this email
         User.findOne({ "local.email": email }, function(err, user) {
-          if (err) return callback(err);
-
+          if (err) {
+            return callback(err);
+          }
+          // if the user does not exist in DB, return an error
           if (!user) {
             return callback(
               null,
@@ -64,13 +70,15 @@ module.exports = function(passport) {
               req.flash("loginMessage", "No user found")
             );
           }
+          // check password against saved password
           if (!user.validPassword(password)) {
             return callback(
               null,
               false,
-              req.flash("loginMessage", "Ooops, wrong password")
+              req.flash("loginMessage", "Incorrect password")
             );
           }
+          // pass user into callback
           return callback(null, user);
         });
       }

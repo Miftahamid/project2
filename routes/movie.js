@@ -6,7 +6,7 @@ router.get("/index", movieController.index);
 router.get("/addmovie", movieController.addMovie);
 
 router.post("/", movieController.create);
-router.post("/", movieController.requireAuth, movieController.create);
+router.post("/", movieController.create);
 // router.get("/new", movieController.new);
 router.get("/:id", movieController.show);
 router.put("/:id", movieController.requireAuth, movieController.update);
