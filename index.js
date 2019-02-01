@@ -36,13 +36,8 @@ app.use(function(req, res, next) {
 
 app.use(routes);
 
-// app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 4000);
 
-// app.listen(4000, () => 
-//    console.log('server is running on port 4000'));
+app.listen(4000, () => 
+   console.log('server is running on port 4000'));
 
-app.set('port', process.env.PORT || 3001)
-
-app.listen(app.get('port'), () => {
-  console.log(`✅ PORT: ${app.get('port')} 🌟 `)
-})
