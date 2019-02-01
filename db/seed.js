@@ -10,8 +10,8 @@ const createPassword = password =>
     Photo.find({}).remove(() => {
       User.create({
         local: {
-          email: "bugsbunny@gmail.com",
-          password: createPassword("bugsbunny")
+          email: "Hey@gmail.com",
+          password: createPassword("bunny")
         }
     }).then(user => {
       Promise.all([

@@ -11,7 +11,7 @@ module.exports = function(passport) {
       callback(err, user);
     });
   });
-
+// got this from passport lab
   passport.use(
     "local-signup",
     new LocalStrategy(

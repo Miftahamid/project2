@@ -1,40 +1,73 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Movie Rater</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
 
-   
-  </head>
-  <body>
-    <header class="site-header">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="/" class="brand-logo left">Movie Rater</a>
-          <ul class="right">
+
+  <title>PixaShare</title>
+</head>
+
+<body>
+  <header class="site-header" style="background-color: black">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/index">PixaShare</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
           {{#if currentUser}}
-            <li><a href="/movie/new">Movie Rater</a></li>
-            <li><a href="/user/{{currentUser.id}}">Profile</a></li>
-            <li><a href="/user/logout">Log Out</a></li>
-            <li class="nav-item">
+          {{!-- <li class="nav-item active">
+            <a class="nav-link" href="/photo/new">+Photo</a>
+          </li> --}}
+          <li class="nav-item">
             <a class="nav-link" href="/user/{{currentUser.id}}">Add Image</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Log Out</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/index">Pictures</a>
+          </li>
           {{else}}
-            <li><a href="/user/login">Log In</a></li>
-            <li><a href="/user/sign-up">Sign Up</a></li>
+
+          <li class="nav-item">
+            <a class="nav-link disabled" href="/login">Log In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="/signup">Sign Up</a>
+          </li>
           {{/if}}
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <main class="container">
-      {{{ body }}}
-    </main>
-  </body>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  {{#if currentUser}}
+  <h1 class="text-center"></h1>
+  {{else}}
+  <h1 class="text-center">Welcome</h1>
+  {{/if}}
+  {{{body}}}
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

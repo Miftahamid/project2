@@ -7,6 +7,7 @@ const User = new Schema({
     email: String,
     password: String
   },
+  //
   photos: [{
     path: String,
     type: Schema.Types.ObjectId,
