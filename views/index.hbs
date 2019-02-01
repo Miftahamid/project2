@@ -1,23 +1,21 @@
-{{#unless currentUser}}
-<h2 class="text-center">Home</h2>
+ {{!-- I have styled it as the youtube vidio and go the uploade from there  --}}
 <div class="jumbotron">
-    <h1 class="display-4">Movie Rater</h1>
-    <p class="lead">This is a heroku app that lets you create an album to share with friends! </p>
+    <h1 class="display-4">Movie Bloger</h1>
+    <p class="lead"> </p>
     <hr class="my-4">
     <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
-    <a class="btn btn-primary btn-lg" href="/signup" role="button">New User</a>
+    <a class="btn btn-primary btn-lg" href="/signup" role="button">New Bloger</a>
 </div>
-{{/unless}}
+ 
 {{#each photo}}
  
-<section style="max-width: 500px; margin: 0 auto 15px">
     <div>
         <div class="card">
             <img class="card-img-top" src="{{path}}" alt="Card image cap">
             <div>
                 {{#if author}}
                 <form action="/index/{{id}}?_method=DELETE" method="POST" accept-charset="utf-8">
-                    <button style="margin-top: 5px" type="submit" value="Delete" class="btn btn-danger">Delete Photo</button>
+                    <button style="margin-top: 5px" type="submit" value="Delete" class="btn btn-danger">Remove </button>
                 </form>
                 {{/if}}
             </div>
@@ -40,7 +38,6 @@
             </div>
         </div>
     </div>
-</section>
 
 </div>
 {{/each}}
