@@ -1,15 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const movieController = require("../controllers/movie");
+// const express = require("express");
+// const router = express.Router();
+// const movieController = require("../controllers/movie");
 
-router.get("/index", movieController.index);
-router.get("/addmovie", movieController.addMovie);
+// router.get("/index", movieController.index);
+// router.get("/addmovie", movieController.addMovie);
 
-router.post("/", movieController.create);
-router.post("/", movieController.create);
-// router.get("/new", movieController.new);
-router.get("/:id", movieController.show);
-router.put("/:id", movieController.requireAuth, movieController.update);
-router.get("/:id/delete", movieController.delete);
+// router.post("/", movieController.create);
+// router.post("/", movieController.create);
+// // router.get("/new", movieController.new);
+// router.get("/:id", movieController.show);
+// router.put("/:id", movieController.requireAuth, movieController.update);
+// router.get("/:id/delete", movieController.delete);
 
-module.exports = router;
+// module.exports = router;

@@ -1,17 +1,17 @@
-const express = require('express');
-const router = express.Router();
+// const express = require('express');
+// const router = express.Router();
 
-router.use((req, res, next) => {
-  res.locals.currentUser = req.user;
-  next();
-});
+// router.use((req, res, next) => {
+//   res.locals.currentUser = req.user;
+//   next();
+// });
 
-router.use('/', require('./application.js'));
-router.use('/user', require('./user'));
-router.use('/movie', require('./movie'));
+// router.use('/', require('./application.js'));
+// router.use('/user', require('./user'));
+// router.use('/movie', require('./movie'));
 
-router.all('*', (req, res) => {
-  res.status(400).send();
-});
-
-module.exports = router;
+// router.all('*', (req, res) => {
+//   res.status(400).send();
+// });
+// // 
+// module.exports = router;

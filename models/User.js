@@ -1,26 +1,26 @@
-const mongoose = require("../db/connection");
-const bcrypt = require("bcrypt-nodejs");
+const mongoose = require('../db/connection');
+const bcrypt = require('bcrypt-nodejs');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const User = new Schema({
   local: {
     email: String,
     password: String
   },
-  movies: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Movie"
-    }
-  ]
+  photos: [{
+    path: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Photo'
+  }]
 });
 
-UserSchema.methods.encrypt = function(password) {
+
+User.methods.encrypt = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-UserSchema.methods.validPassword = function(password) {
+User.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.local.password);
 };
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model('User', User);
