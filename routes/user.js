@@ -18,10 +18,10 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const passport = require('passport');
-const User = require('../models/user');
 const { Photo, Comment } = require('../models/photo');
 const multer = require('multer');
 const fs = require('fs');
+const User = require('../models/user');
 //^^ requiring the dependencies that my routes need
 
 // GET /
