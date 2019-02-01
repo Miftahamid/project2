@@ -1,18 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const userController = require('../controllers/user.js');
-
-// router.get('/login', userController.login);
-// router.post('/login', userController.createLogin);
-// router.get('/sign-up', userController.signUp);
-// router.post('/sign-up', userController.createSignUp);
-// router.get('/logout', userController.logout);
-// router.get('/:id', userController.show);
-
-// module.exports = router;
-
-
-
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
@@ -22,7 +7,7 @@ const { Photo, Comment } = require('../models/Photo');
 const multer = require('multer');
 const fs = require('fs');
 const User = require('../models/User');
-//^^ requiring the dependencies that my routes need
+//^^ requiring the dependencies that my routes needs
 
 // GET /
 router.get('/', (req, res) => {
@@ -84,6 +69,7 @@ const multerConfig = {
     }
   }),
   //A means of ensuring only images are uploaded.
+  // got it form youtube
   fileFilter: function (req, file, next) {
     if (!file) {
       next();
