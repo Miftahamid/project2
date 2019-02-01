@@ -1,5 +1,5 @@
-const User = require('../models/user');
-const { Photo } = require('../models/photo');
+const User = require('../models/User');
+const { Photo } = require('../models/Photo');
 const bcrypt = require('bcrypt-nodejs');
 
 const createPassword = password =>

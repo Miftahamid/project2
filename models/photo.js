@@ -32,3 +32,4 @@ module.exports = {
   Photo: mongoose.model('Photo', Photo),
   Comment: mongoose.model('Comment', Comment)
 };
+
