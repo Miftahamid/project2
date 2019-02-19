@@ -1,23 +1,25 @@
- {{!-- I have styled it as the youtube vidio and go the uploade from there  --}}
+{{#unless currentUser}}
+
 <div class="jumbotron">
-    <h1 class="display-4">Movie Bloger</h1>
-    <p class="lead"> </p>
+    <h1 class="display-4">Movie Blog </h1>
+    <p class="lead"> A Movie lovers app to blog about movies that they have seen and love!!!!</p>
     <hr class="my-4">
+    <p>Made by Mifta Hamid</p>
     <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
-    <a class="btn btn-primary btn-lg" href="/signup" role="button">New Bloger</a>
+    <a class="btn btn-primary btn-lg" href="/signup" role="button">New User</a>
 </div>
- 
+{{/unless}}
 {{#each photo}}
- 
+
+<section style="max-width: 500px; margin: 0 auto 15px">
     <div>
         <div class="card">
-          {{!-- This lets me see the img in the  --}}
             <img class="card-img-top" src="{{path}}" alt="Card image cap">
             <div>
                 {{#if author}}
-                {{!-- // this is the remove button  --}}
                 <form action="/index/{{id}}?_method=DELETE" method="POST" accept-charset="utf-8">
-                    <button style="margin-top: 5px" type="submit" value="Delete" class="btn btn-danger">Remove </button>
+                    <button style="margin-top: 5px" type="submit" value="Delete" class="btn btn-danger">Delete
+                        Photo</button>
                 </form>
                 {{/if}}
             </div>
@@ -40,6 +42,7 @@
             </div>
         </div>
     </div>
+</section>
 
 </div>
 {{/each}}
